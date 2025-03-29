@@ -1,6 +1,21 @@
 const mongoose = require('mongoose');
 const mongooseDelete = require('mongoose-delete');
 
+
+const reviewSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  name: String, // Tên người review
+  rating: {
+    type: Number,
+    required: true
+  },
+  comment: String,
+},{timestamps: true});
+
 const ProductSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -14,6 +29,16 @@ const ProductSchema = new mongoose.Schema({
   price: {
     type: Number,
     required: true,
+  },
+  reviews: [reviewSchema],
+  numReviews: {
+    type: Number,
+    default: 0
+  },
+
+  averageRating: {
+    type: Number,
+    default: 0
   },
   quantity: {
     type: Number,

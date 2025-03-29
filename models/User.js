@@ -3,9 +3,15 @@ const mongooseDelete = require('mongoose-delete');
 
 const UserSchema = new mongoose.Schema(
     {
+      firebaseUid: {
+        type: String,
+        unique: true,
+        sparse: true, // ✅ Cho phép nhiều document không có field này
+      },
       name: {
         type: String,
-        required: true,
+        required: false,
+        default: ''
       },
       email: {
         type: String,
@@ -14,19 +20,19 @@ const UserSchema = new mongoose.Schema(
       },
       password: {
         type: String,
-        required: true,
+        required: false,
       },
       role: {
         type: String,
         enum: ['user', 'admin'],
-        default: 'user', // Mặc định là user, có thể thay đổi thành admin khi quản trị viên
+        default: 'user', 
       },
       isVerified: {
         type: Boolean,
-        default: false, // Trạng thái xác thực email, ví dụ dùng để xác minh tài khoản qua email
+        default: false, 
       },
       profilePicture: {
-        type: String, // Lưu đường dẫn ảnh đại diện của người dùng
+        type: String, 
       },
       addresses: [
         {

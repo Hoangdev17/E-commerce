@@ -3,7 +3,7 @@ const User = require('../models/User'); // Đảm bảo rằng bạn có model U
 
 // Middleware xác thực người dùng
 const authenticate = async (req, res, next) => {
-  const token = req.header('Authorization')?.replace('Bearer ', ''); // Lấy token từ header
+  const token = req.header('Authorization')?.replace('Bearer ', '');
 
   if (!token) {
     return res.status(401).json({ message: 'Access denied. No token provided.' });
@@ -14,7 +14,7 @@ const authenticate = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     // Lấy user từ DB bằng ID từ token
-    const user = await User.findById(decoded.userId);
+    const user = await User.findById(decoded.userId || decoded.id);
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
