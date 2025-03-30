@@ -1,0 +1,24 @@
+.order-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+  }
+  
+  .order-title {
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  .order-table-wrapper {
+    overflow-x: auto;
+  }
+  
+  .product-list {
+    padding-left: 16px;
+    margin: 0;
+  }
+  .product-list li {
+    list-style: disc;
+    font-size: 14px;
+  }
+  
