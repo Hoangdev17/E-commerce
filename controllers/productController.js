@@ -44,6 +44,15 @@ const getProducts = async (req, res) => {
   }
 };
 
+const get4Products = async (req,res) => {
+  try {
+    const products = await Product.find().sort({ createdAt: -1 }).limit(4);
+    return res.json(products);
+  } catch (error) {
+    return res.status(500).json({ message: 'Lỗi khi lấy sản phẩm' });
+  }
+}
+
  const getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id).populate('reviews.user', 'name');
@@ -219,5 +228,6 @@ module.exports = {
   addOrUpdateReview,
   getProductById,
   getReviews,
-  uploadAvatar
+  uploadAvatar,
+  get4Products
 };

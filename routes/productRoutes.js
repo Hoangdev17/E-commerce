@@ -9,6 +9,7 @@ const {
   getProductById,
   getReviews,
   uploadAvatar,
+  get4Products,
   
 } = require('../controllers/productController');
 const authenticate = require('../middleware/authMiddleware.js'); // Middleware xác thực người dùng
@@ -39,5 +40,7 @@ router.get('/:id/getreviews', getReviews);
 router.get('/:id', authenticate, getProductById);
 
 router.post('/upload/:id', upload.single('avatar'),authenticate, uploadAvatar);
+
+router.get("/get4", get4Products);
 
 module.exports = router;
