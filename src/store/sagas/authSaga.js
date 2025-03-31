@@ -24,7 +24,16 @@ function* loginSaga(action) {
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
 
+    const redirectUrl = localStorage.getItem("redirectAfterLogin") || "/";
+
     yield put(loginSuccess({ user, token }));
+
+    if (redirectUrl) {
+      localStorage.removeItem("redirectAfterLogin");
+      window.location.href = redirectUrl;
+    } else {
+      console.log("No redirect, staying on the same page");
+    }
   } catch (error) {
     
     yield put(loginFailure(error.response?.data?.message || 'Đăng nhập thất bại'));
