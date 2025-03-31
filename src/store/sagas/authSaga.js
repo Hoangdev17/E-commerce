@@ -1,6 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 import { loginSuccess, loginFailure, registerSuccess, registerFailure } from '../actions/authActions';
+import { push } from "redux-first-history"
 
 function* loginSaga(action) {
   
@@ -22,7 +23,13 @@ function* loginSaga(action) {
 
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
+
+    const redirectUrl = localStorage.getItem("redirectAfterLogin") || "/";
+    localStorage.removeItem("redirectAfterLogin");
+
     yield put(loginSuccess({ user, token }));
+
+    yield put(push(`${redirectUrl}`)); 
   } catch (error) {
     
     yield put(loginFailure(error.response?.data?.message || 'Đăng nhập thất bại'));

@@ -20,6 +20,7 @@ const AppHeader = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     localStorage.removeItem('persist:root');
+    localStorage.removeItem("redirectAfterLogin");
     window.location.href = '/login';
   };
 

@@ -18,7 +18,6 @@ const LoginForm = () => {
 
   const onFinish = (values) => {
     dispatch(loginRequest(values));
-    navigate('/');
   };
 
   const handleGoogleLogin = async () => {
