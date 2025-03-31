@@ -24,12 +24,7 @@ function* loginSaga(action) {
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
 
-    const redirectUrl = localStorage.getItem("redirectAfterLogin") || "/";
-    localStorage.removeItem("redirectAfterLogin");
-
     yield put(loginSuccess({ user, token }));
-
-    yield put(push(`${redirectUrl}`)); 
   } catch (error) {
     
     yield put(loginFailure(error.response?.data?.message || 'Đăng nhập thất bại'));
