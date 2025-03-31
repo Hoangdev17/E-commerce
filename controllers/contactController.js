@@ -1,5 +1,5 @@
-const Contact = require("../models/Contact");
-const sendEmail = require("../utils/sendEmail");
+import Contact from "../models/Contact.js";
+import sendEmail from "../utils/sendEmail.js";
 
 export const sendContactEmail = async (req, res) => {
     try {
