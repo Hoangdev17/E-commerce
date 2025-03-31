@@ -1,6 +1,6 @@
 // src/pages/LoginForm.jsx
-import React from 'react';
-import { Form, Input, Button, Divider, Typography } from 'antd';
+import React, { useEffect } from 'react';
+import { Form, Input, Button, Divider, Typography, message } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginRequest, loginSuccess } from '../store/actions/authActions';
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +14,16 @@ const { Title, Text } = Typography;
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, error } = useSelector((state) => state.auth);
+  const { loading, error, success } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (success) {
+      message.success('Đăng nhập thành công!');
+      navigate('/');
+    } else if (error) {
+      message.error('Sai tài khoản hoặc mật khẩu!');
+    }
+  }, [success, error, navigate]);
 
   const onFinish = (values) => {
     dispatch(loginRequest(values));
@@ -24,25 +33,21 @@ const LoginForm = () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const firebaseToken = await result.user.getIdToken();
-  
-      // Call your backend API to verify the Firebase token and get user and JWT
+      
       const response = await axios.post('https://e-commerce-1-6nku.onrender.com/api/auth/google-login', { firebaseToken });
       const { token, user } = response.data;
-  
-      // Dispatch loginSuccess action with user and token
+      
       dispatch(loginSuccess(user, token));
-  
-      // Save token to localStorage for later use
       localStorage.setItem('token', token);
-  
-      // Navigate to the home page or other relevant page
+      
+      message.success('Đăng nhập thành công với Google!');
       navigate('/');
     } catch (error) {
       console.error('Login failed:', error);
-      alert('Login failed, please try again.');
+      message.error('Đăng nhập Google thất bại, vui lòng thử lại!');
     }
   };
-  
+
   return (
     <div
       style={{
@@ -85,11 +90,11 @@ const LoginForm = () => {
       <Divider plain>Hoặc</Divider>
 
       <Button
-        type="danger"  // Sử dụng type danger
+        type="danger"
         icon={<GoogleOutlined />}
         size="large"
         block
-        style={{ backgroundColor: 'red', color: 'white' }}  // Thêm style trực tiếp
+        style={{ backgroundColor: 'red', color: 'white' }}
         onClick={handleGoogleLogin}
       >
         Đăng nhập với Google

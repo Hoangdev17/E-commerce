@@ -28,9 +28,8 @@ const AppHeader = () => {
     <>
       <Link to="/">Home</Link>
       <Link to="/products">Product</Link>
-      <Link to="/apple">About</Link>
-      <Link to="/apple">Contact</Link>
-      <Link to="/apple">Blog</Link>
+      <Link to="/about">About</Link>
+      <Link to="/contact">Contact</Link>
     </>
   );
 

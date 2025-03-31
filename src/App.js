@@ -18,6 +18,8 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminUserPage from './pages/AdminUserPage';
 import ProductManager from './pages/ProductManager';
 import OrderManager from './pages/OrderManager';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
           <Route path="/cancel" element={<CancelPage />} />
           <Route path="/shipping-info" element={<ShippingForm />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Route>
 
         {/* Admin Layout */}

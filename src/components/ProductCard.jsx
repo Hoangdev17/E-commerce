@@ -32,7 +32,7 @@ const ProductCard = ({ product }) => {
       duration: 5
     });
   
-    navigate('/cart');
+    
   };
 
   return (
