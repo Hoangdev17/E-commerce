@@ -47,9 +47,9 @@ const getProducts = async (req, res) => {
 const get4Products = async (req,res) => {
   try {
     const products = await Product.find().sort({ createdAt: -1 }).limit(4);
-    return res.json(products);
+     res.json(products);
   } catch (error) {
-    return res.status(500).json({ message: 'Lỗi khi lấy sản phẩm' });
+     res.status(500).json({ message: 'Lỗi khi lấy sản phẩm' });
   }
 }
 

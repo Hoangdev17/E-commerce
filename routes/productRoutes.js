@@ -12,8 +12,8 @@ const {
   get4Products,
   
 } = require('../controllers/productController');
-const authenticate = require('../middleware/authMiddleware.js'); // Middleware xác thực người dùng
-const authorizeAdmin = require('../middleware/roleMiddleware.js'); // Middleware kiểm tra quyền admin
+const authenticate = require('../middleware/authMiddleware.js'); 
+const authorizeAdmin = require('../middleware/roleMiddleware.js'); 
 const upload = require('../middleware/upload.js');
 
 const router = express.Router();
@@ -23,6 +23,8 @@ router.post('/add', authenticate, authorizeAdmin, addProduct);
 
 // Lấy danh sách sản phẩm (có thể không cần xác thực nếu mọi người đều có quyền truy cập)
 router.get('/', getProducts);
+
+router.get('/get4', get4Products);
 
 // Cập nhật sản phẩm (chỉ cho phép admin)
 router.put('/:productId', authenticate, authorizeAdmin, updateProduct);
@@ -37,10 +39,10 @@ router.post('/:id/reviews', authenticate, addOrUpdateReview);
 
 router.get('/:id/getreviews', getReviews);
 
-router.get('/:id', authenticate, getProductById);
+router.get('/:id', getProductById);
 
 router.post('/upload/:id', upload.single('avatar'),authenticate, uploadAvatar);
 
-router.get("/get4", get4Products);
+
 
 module.exports = router;
