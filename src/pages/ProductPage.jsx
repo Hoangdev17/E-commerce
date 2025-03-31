@@ -36,7 +36,7 @@ const ProductPage = () => {
       });
   
       console.log("Reviews nhận từ backend:", res.data.reviews); 
-      setReviews(res.data.reviews || []); // chắc chắn là mảng
+      setReviews(res.data.reviews || []); 
       setAverageRating(res.data.averageRating || 0);
     } catch (error) {
       console.error('Lỗi khi lấy reviews:', error);
@@ -114,6 +114,23 @@ const ProductPage = () => {
         footer={null}
         width={700}
       >
+         {/* 🟢 Chi tiết sản phẩm */}
+          {selectedProduct && (
+            <div style={{ display: 'flex', gap: 20, marginBottom: 20 }}>
+              <img
+                src={selectedProduct.image}
+                alt={selectedProduct.name}
+                style={{ width: 150, height: 150, objectFit: 'cover', borderRadius: 8 }}
+              />
+              <div>
+                <Title level={4}>{selectedProduct.name}</Title>
+                <p><strong>Giá:</strong> ${selectedProduct.price}</p>
+                <p><strong>Danh mục:</strong> {selectedProduct.category}</p>
+                <p><strong>Mô tả:</strong> {selectedProduct.description}</p>
+              </div>
+            </div>
+          )}
+
         {/* Hiển thị điểm trung bình */}
         <div style={{ marginBottom: 15 }}>
           <strong>Đánh giá trung bình:</strong>{' '}
@@ -131,6 +148,7 @@ const ProductPage = () => {
           renderItem={(item) => (
             <List.Item>
               <div>
+              <strong>{item?.name}</strong>
                 <Rate disabled defaultValue={item.rating} />
                 <p style={{ marginTop: 4 }}>{item.comment}</p>
               </div>

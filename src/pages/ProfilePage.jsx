@@ -50,6 +50,8 @@ const ProfilePage = () => {
     fetchData();
   }, [form]);
 
+  console.log(orders);
+
   const onFinish = async (values) => {
     try {
       if (!values.profilePicture && user?.profilePicture) {
@@ -164,7 +166,7 @@ const ProfilePage = () => {
                     <List.Item key={item.productId}>
                       <Row style={{ width: '100%' }} gutter={16}>
                         <Col span={4}>
-                          <img src={item.productImage || 'https://via.placeholder.com/80'} alt={item.productName} width="100%" style={{ borderRadius: 4 }} />
+                          <img src={item.image || 'https://via.placeholder.com/80'} alt={item.productName} width="100%" style={{ borderRadius: 4 }} />
                         </Col>
                         <Col span={20}>
                           <Text strong>{item.productName}</Text>
