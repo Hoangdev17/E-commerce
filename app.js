@@ -7,7 +7,8 @@ const productRoutes = require('./routes/productRoutes.js')
 const cartRoutes = require("./routes/cartRoutes");
 const orderRoutes = require("./routes/orderRoutes.js");
 const userRoutes = require("./routes/userRoutes.js");
-const adminRoutes = require("./routes/adminRoutes.js")
+const adminRoutes = require("./routes/adminRoutes.js");
+const contactRoutes = require("./routes/contactRoutes.js");
 
 dotenv.config(); // Tải file .env
 
@@ -29,6 +30,7 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/order", orderRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/contact", contactRoutes);
 
 // Lắng nghe ứng dụng
 const PORT = process.env.PORT || 5000;
