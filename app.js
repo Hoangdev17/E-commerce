@@ -15,7 +15,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());  // Parse JSON requests
-app.use(cors());  // Cho phép CORS
+app.use(cors({ origin: "*" }));  // Cho phép CORS
 
 // Kết nối MongoDB
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
