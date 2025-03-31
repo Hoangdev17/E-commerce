@@ -228,7 +228,8 @@ export const checkOutByCOD = async (req, res) => {
       productId: item.productId,
       productName: item.name,
       quantity: item.quantity,
-      price: item.price
+      price: item.price,
+      image: item.image
     }));
 
     const newOrder = await Order.create({

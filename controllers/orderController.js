@@ -23,6 +23,7 @@ export const createOrder = async (req, res) => {
           productName: product.name,
           quantity: item.quantity,
           price: product.price,
+          image: product.image
         };
       })
     );
