@@ -54,4 +54,4 @@ export const getAllContacts = async (req, res) => {
       console.error(error);
       return res.status(500).json({ message: "Internal Server Error" });
     }
-  };
+};
